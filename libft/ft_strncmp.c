@@ -1,21 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ isascii.c                                      :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: afindo <afindo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/10 14:10:11 by afindo            #+#    #+#             */
-/*   Updated: 2022/01/11 15:01:51 by afindo           ###   ########.fr       */
+/*   Created: 2022/01/11 16:46:11 by afindo            #+#    #+#             */
+/*   Updated: 2022/01/11 16:47:28 by afindo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
 
-int	ft_isascii(int c)
+size_t	ft_strncmp(char *s1, char *s2, size_t n)
 {
-	if (c >= 0 || c <= 127)
-		return (1);
-	else
+	unsigned int	i;
+	int				d;
+
+	i = 0;
+	d = 1;
+	if (n == 0)
 		return (0);
+	while (s1[i] != '\0' && s2[i] != '\0' && s1[i] == s2[i] && i < n)
+	{
+		d = s1[i] - s2[i];
+		if (i == (n - 1) && d == 0)
+		{
+			return (s1[i] - s2[i]);
+		}
+		i++;
+	}
+	return (s1[i] - s2[i]);
 }
