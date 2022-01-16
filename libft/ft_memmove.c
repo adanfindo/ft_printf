@@ -6,12 +6,19 @@
 /*   By: afindo <afindo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 16:48:51 by afindo            #+#    #+#             */
-/*   Updated: 2022/01/11 17:40:39 by afindo           ###   ########.fr       */
+/*   Updated: 2022/01/16 14:20:23 by afindo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
 
+int	ft_isascii(int c)
+void	ft_bzero(void *s, size_t n)
+int	ft_isalnum(int c)
+int	ft_isalpha(int c)
+int	ft_isdgit(int c)
+int	ft_isprint(int c)
+void	ft_memcpy(void *dst, const void *src, size_t n)
 void	memmove(void *dest, void *src, size_t len)
 {
 	int	i;
