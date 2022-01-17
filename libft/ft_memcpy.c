@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afindo <afindo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: afindo <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 16:45:18 by afindo            #+#    #+#             */
-/*   Updated: 2022/01/16 14:20:02 by afindo           ###   ########.fr       */
+/*   Updated: 2022/01/17 11:05:00 by afindo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,15 @@
 
 void	ft_memcpy(void *dst, const void *src, size_t n)
 {
-	char	*csrc;
-	char	*cdst;
-	int		i;
+	size_t i;
 
-	csrc = (char *)src;
-	cdst = (char *)dst;
+	if(!dst && !src)
+		return (0);
 	i = 0;
 	while (i < n)
 	{
-		cdst[i] = csrc[i];
+		((unsigned char *)dst)[i] = ((unsigned char *)src)[i];
 		i++;
 	}
-	resturn (dst);
+	return (dst);
 }

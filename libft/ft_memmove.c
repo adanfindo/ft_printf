@@ -12,33 +12,29 @@
 
 #include <libft.h>
 
-int	ft_isascii(int c)
-void	ft_bzero(void *s, size_t n)
-int	ft_isalnum(int c)
-int	ft_isalpha(int c)
-int	ft_isdgit(int c)
-int	ft_isprint(int c)
-void	ft_memcpy(void *dst, const void *src, size_t n)
 void	memmove(void *dest, void *src, size_t len)
 {
-	int	i;
+	size_t	i;
 
-	if (dest < src)
+	if(!dst && !src)
+		return (0);
+	i = 0;
+	if((size_t)dst - (size_t)src < len)
 	{
-		i = 0;
-		while (i < len)
+		i = len - 1;
+		while (i >= 0 && i < len)
 		{
-			((char *)dest)[i] = ((char *)src)[i];
-			i++;
+			((unsigned char *)dst)[i] = ((unsigned char *)src)[i];
+			i--;
 		}
 	}
 	else
 	{
-		i = len - 1;
-		while (i >= 0)
+		while (i < len)
 		{
-			((char *)dest)[i] = ((char *)src)[i];
-			i--;
+			((unsigned char *)dst)[i] = ((unsigned char *)src)[i];
+			i++;
 		}
 	}
+	return (dst);
 }

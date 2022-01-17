@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afindo <afindo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: afindo <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 12:02:23 by afindo            #+#    #+#             */
-/*   Updated: 2022/01/11 14:24:22 by afindo           ###   ########.fr       */
+/*   Updated: 2022/01/17 11:20:18 by afindo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,19 @@
 
 size_t	ft_strlcat(char *dest, char *src, size_t dstsize)
 {
-	unsigned int	ind;
-	unsigned int	j_ind;
-	unsigned int	count_dest;
-	unsigned int	count_src;
+	size_t	lendst;
+	size_t	i;
 
-	count_dest = ft_strlen(dest);
-	count_src = ft_strlen(src);
-	ind = 0;
-	j_ind = count_dest;
-	if (dstsize > count_dest)
+	if(dstsize <= ft_strlen(dst))
+		return (dstsize + ft_strlen(src));
+	lendst = ft_strlen(dst);
+	i = 0;
+	while (src[i] != '\0' && lendst + 1 < dstsize)
 	{
-		while (j_ind < (dstsize - 1) && src[ind] != '\0')
-		{
-			dest[j_ind] = src[ind];
-			j_ind++;
-			ind++;
-		}
+		dst[lendst] = src[i];
+		lendst++;
+		i++;
 	}
-	else
-		return (dstsize + count_src);
-	dest[j_ind] = '\0';
-	return (count_dest + count_src);
+	dst[lendst] = '\0';
+	return (ft_strlen(dst) + ft_strlen(src[i]));
 }

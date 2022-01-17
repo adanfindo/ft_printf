@@ -22,4 +22,5 @@ void	*memset(void *b, int c, size_t len)
 		((unsigned char *)b)[i] = c;
 		i++;
 	}
+	return (b);
 }
