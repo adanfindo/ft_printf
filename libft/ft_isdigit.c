@@ -3,18 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afindo <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: afindo <afindo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 13:03:46 by afindo            #+#    #+#             */
-/*   Updated: 2022/01/17 10:58:42 by afindo           ###   ########.fr       */
+/*   Updated: 2022/01/17 15:14:36 by afindo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
+#include "libft.h"
 
-int	ft_isdgit(int c)
+int	ft_isdigit(int c)
 {
 	if (c >= 48 && c <= 57)
 		return (1);
-	return (0);
+	else
+		return (0);
 }

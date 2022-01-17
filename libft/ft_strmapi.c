@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: afindo <afindo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/10 14:43:13 by afindo            #+#    #+#             */
-/*   Updated: 2022/01/17 15:15:22 by afindo           ###   ########.fr       */
+/*   Created: 2022/01/17 12:43:44 by afindo            #+#    #+#             */
+/*   Updated: 2022/01/17 15:43:14 by afindo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memset(void *b, int c, size_t len)
+char
+	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
+	char	*str;
 	size_t	i;
 
+	str = ft_strdup(s);
+	if (!str)
+		return (NULL);
 	i = 0;
-	while (i < len)
+	while (str[i])
 	{
-		((unsigned char *)b)[i] = c;
+		str[i] = (*f)(i, str[i]);
 		i++;
 	}
-	return (b);
+	return (str);
 }

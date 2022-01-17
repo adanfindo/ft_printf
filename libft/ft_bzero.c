@@ -6,7 +6,7 @@
 /*   By: afindo <afindo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 15:58:57 by afindo            #+#    #+#             */
-/*   Updated: 2022/01/16 12:28:09 by afindo           ###   ########.fr       */
+/*   Updated: 2022/01/17 14:49:53 by afindo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,9 @@
 
 void	ft_bzero(void *s, size_t n)
 {
-	ft_memset(s, '\0', n);
+	size_t	i;
+
+	i = 0;
+	while (i < n)
+		((unsigned char *)s)[i++] = 0;
 }

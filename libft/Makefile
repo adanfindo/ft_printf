@@ -3,68 +3,81 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: afindo <marvin@42.fr>                      +#+  +:+       +#+         #
+#    By: afindo <afindo@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/16 11:43:12 by afindo            #+#    #+#              #
-#    Updated: 2022/01/16 11:43:28 by afindo           ###   ########.fr        #
+#    Updated: 2022/01/17 17:08:42 by afindo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-[11:42, 16/1/2022] +39 327 871 9924: NAME = libft.a
+NAME = libft.a
 
-SRCS = ft_atoi.c \
-	   ft_isalnum.c \
-	   ft_isalpha.c \
-	   ft_isascii.c \
-	   ft_isdigit.c \
-	   ft_isprint.c \
-	   ft_strlcat.c \
-	   ft_strlcpy.c \
-	   ft_strlen.c \
-	   ft_strncmp.c \
-	   ft_memset.c \
-	   ft_tolower.c \
-	   ft_toupper.c \
-	   ft_bzero.c \
-	   ft_memmove.c \
-	   ft_memcpy.c \
-	   ft_memccpy.c \
-	   ft_memchr.c \
-	   ft_memcmp.c \
-	   ft_calloc.c \
-	   ft_strchr.c \
-	   ft_strdup.c \
-	   ft_strnstr.c \
-	   ft_strrchr.c \
-	   ft_substr.c \
-	   ft_strjoin.c \
-	   ft_strtrim.c \
-	   ft_strmapi.c \
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror
+AR = ar rcs
+RM = rm -f
 
-OBJS	= $(SRCS:.c=.o)
-OBJS_B	= $(SRCS_B:.c=.o)
-RM		= rm -f
-LIBC	= ar -rcs
-FLAGS	= -Wall -Wextra -Werror
-INCS	= .
+FILES =	ft_memset \
+		ft_bzero \
+		ft_memmove \
+		ft_memcpy \
+		ft_memchr \
+		ft_memcmp \
+		ft_strlen \
+		ft_strlcpy \
+		ft_strlcat \
+		ft_strchr \
+		ft_strrchr \
+		ft_strncmp \
+		ft_strnstr \
+		ft_atoi \
+		ft_isalpha \
+		ft_isdigit \
+		ft_isalnum \
+		ft_isascii \
+		ft_isprint \
+		ft_toupper \
+		ft_tolower \
+		ft_strdup \
+		ft_calloc \
+		ft_substr \
+		ft_strjoin \
+		ft_strtrim \
+		ft_strmapi \
+		ft_split \
+		ft_itoa \
+		ft_putchar_fd \
+		ft_putendl_fd \
+		ft_putnbr_fd \
+		ft_putstr_fd \
+		ft_striteri \
 
-.c.o :
-	${CC} ${FLAGS} -c $< -o ${<:.c=.o} -I${INCS}
+SRCS_DIR = ./
+SRCS = $(addprefix $(SRCS_DIR), $(addsuffix .c, $(FILES)))
+SRCS_B = $(addprefix $(SRCS_DIR), $(addsuffix .c, $(FILES_B)))
 
-$(NAME): ${OBJS}
-	${LIBC} $(NAME) $(OBJS)
+OBJS_DIR = ./
+OBJS = $(addprefix $(OBJS_DIR), $(addsuffix .o, $(FILES)))
+OBJS_B = $(addprefix $(OBJS_DIR), $(addsuffix .o, $(FILES_B)))
+
+
+.c.o: $(SRCS)
+	$(CC) $(CFLAGS) -c -o $@ $<
+
+$(NAME): $(OBJS)
+	$(AR) $(NAME) $(OBJS)
+
+bonus: $(OBJS_B)
+	$(AR) $(NAME) $^
 
 all: $(NAME)
 
-bonus: $(NAME) $(OBJS_B)
-	${LIBC} $(NAME) $(OBJS_B)
-    
-fclean: clean
-	$(RM) $(NAME) $(bonus)
-
 clean:
-	$(RM) -f $(OBJS) $(OBJS_B)
-    
-re: fclean all
+	$(RM) $(OBJS) $(OBJS_B)
 
-.PHONY: all bonus clean fclean re .c.o
+fclean: clean
+	$(RM) $(NAME)
+
+re: clean all
+
+.PHONY: bonus all clean fclean re
