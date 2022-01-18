@@ -6,18 +6,19 @@
 /*   By: afindo <afindo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 12:43:44 by afindo            #+#    #+#             */
-/*   Updated: 2022/01/17 15:43:14 by afindo           ###   ########.fr       */
+/*   Updated: 2022/01/18 12:23:40 by afindo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char
-	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
 	char	*str;
 	size_t	i;
 
+	if (!s || !f)
+		return (0);
 	str = ft_strdup(s);
 	if (!str)
 		return (NULL);

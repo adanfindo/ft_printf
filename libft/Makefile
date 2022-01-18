@@ -6,7 +6,7 @@
 #    By: afindo <afindo@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/16 11:43:12 by afindo            #+#    #+#              #
-#    Updated: 2022/01/17 17:08:42 by afindo           ###   ########.fr        #
+#    Updated: 2022/01/18 12:13:12 by afindo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,6 +51,16 @@ FILES =	ft_memset \
 		ft_putnbr_fd \
 		ft_putstr_fd \
 		ft_striteri \
+		
+FILES_B = ft_lstnew \
+		  ft_lstadd_front \
+		  ft_lstsize \
+		  ft_lstlast \
+		  ft_lstadd_back \
+		  ft_lstdelone \
+		  ft_lstclear \
+		  ft_lstiter \
+		  ft_lstmap \
 
 SRCS_DIR = ./
 SRCS = $(addprefix $(SRCS_DIR), $(addsuffix .c, $(FILES)))

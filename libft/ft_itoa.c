@@ -6,56 +6,67 @@
 /*   By: afindo <afindo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 15:44:10 by afindo            #+#    #+#             */
-/*   Updated: 2022/01/17 15:48:24 by afindo           ###   ########.fr       */
+/*   Updated: 2022/01/18 12:29:41 by afindo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_abs(int nbr)
+static	void	*ft_digit(char *str, long nb, size_t len, int n)
 {
-	if (nbr < 0)
-		return (-nbr);
-	return (nbr);
+	size_t	s;
+
+	s = 0;
+	if (nb < 0)
+	{
+		s = -1;
+		nb = nb * -1;
+		str[0] = '-';
+	}
+	str[len] = '\0';
+	if (n == 0)
+	{
+		str[len - 1] = '0';
+		return (str);
+	}
+	while (nb > 0)
+	{
+		str[--len] = (nb % 10) + 48;
+		nb = nb / 10;
+	}
+	return (*(&str));
 }
 
-static void	ft_strrev(char *str)
+static int	ft_len(long nb)
 {
-	size_t	length;
-	size_t	i;
-	char	tmp;
+	int	i;
 
-	length = ft_strlen(str);
 	i = 0;
-	while (i < length / 2)
+	if (nb == 0)
+		i++;
+	if (nb < 0)
 	{
-		tmp = str[i];
-		str[i] = str[length - i - 1];
-		str[length - i - 1] = tmp;
+		nb = nb * -1;
 		i++;
 	}
+	while (nb > 0)
+	{
+		nb = nb / 10;
+		i++;
+	}
+	return (i);
 }
 
 char	*ft_itoa(int n)
 {
 	char	*str;
-	int		is_neg;
-	size_t	length;
+	size_t	len;
+	long	nb;
 
-	is_neg = (n < 0);
-	str = ft_calloc(11 + is_neg, sizeof(*str));
+	nb = n;
+	len = ft_len(nb);
+	str = (char *)malloc(sizeof (char) * len + 1);
 	if (!str)
 		return (NULL);
-	if (n == 0)
-		str[0] = '0';
-	length = 0;
-	while (n != 0)
-	{
-		str[length++] = '0' + ft_abs(n % 10);
-		n = (n / 10);
-	}
-	if (is_neg)
-		str[length] = '-';
-	ft_strrev(str);
-	return (str);
+	return (ft_digit(str, nb, len, n));
 }

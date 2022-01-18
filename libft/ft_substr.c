@@ -6,7 +6,7 @@
 /*   By: afindo <afindo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 12:31:08 by afindo            #+#    #+#             */
-/*   Updated: 2022/01/17 14:16:01 by afindo           ###   ########.fr       */
+/*   Updated: 2022/01/18 12:52:25 by afindo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,19 @@
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char	*n_str;
-	size_t	i;
-	size_t	j;
+	char			*n_str;
+	size_t			i;
+	size_t			j;
+	unsigned int	l;
 
-	n_str = (char *)malloc(len + 1);
-	if (!s || !n_str)
+	if (!s)
+		return (0);
+	l = ft_strlen(s);
+	if (l < len)
+		n_str = (char *)malloc(l * sizeof(char) + 1);
+	else
+		n_str = (char *)malloc(len * sizeof(char) + 1);
+	if (!n_str)
 		return (0);
 	i = start;
 	j = 0;

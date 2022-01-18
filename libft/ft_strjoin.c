@@ -6,7 +6,7 @@
 /*   By: afindo <afindo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 12:33:45 by afindo            #+#    #+#             */
-/*   Updated: 2022/01/17 12:35:01 by afindo           ###   ########.fr       */
+/*   Updated: 2022/01/18 12:22:54 by afindo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,10 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	int		i;
 	int		j;
 
+	if (!s1 || !s2)
+		return (0);
 	n_str = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
-	if (!s1 || !s2 || !n_str)
+	if (!n_str)
 		return (0);
 	i = 0;
 	while (s1[i] != '\0')
