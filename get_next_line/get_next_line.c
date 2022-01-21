@@ -3,11 +3,12 @@
 
 char	*get_next_line(int fd)
 {
-	static char		*gnl_buff = NULL;
+	static char		*gnl_buff;
 	char			*buff;
 	char			*line;
 	ssize_t			n;
 
+	gnl_buff = NULL;
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	buff = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
