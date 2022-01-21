@@ -1,22 +1,8 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: afindo <marvin@42.fr>                      +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/21 12:01:34 by afindo            #+#    #+#             */
-/*   Updated: 2022/01/21 12:01:34 by afindo           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #include "get_next_line.h"
 
+
 char	*ft_strchr(const char *s, int c)
-/*
-cerca il carattere in una stringa, muove il puntatore su di esso e restituisce la stringa
-dal puntatore in poi
-*/
 {
 	int		i;
 	char	ch;
@@ -38,9 +24,6 @@ dal puntatore in poi
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-/*
-copia src in dst controllando che ci sia lo spazio necessario (dstsize)
-*/
 	size_t	i;
 	size_t	count;
 
@@ -64,9 +47,6 @@ copia src in dst controllando che ci sia lo spazio necessario (dstsize)
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-/*
-unisce s1 ad s2
-*/
 	char	*ccat;
 	int		len_s1;
 	int		len_s2;
@@ -89,9 +69,6 @@ unisce s1 ad s2
 
 char	*ft_strdup(const char *s1)
 {
-/*
-duplica s1 e ne restituisce la copia
-*/
 	size_t	size;
 	size_t	i;
 	char	*ptr;
@@ -116,11 +93,6 @@ duplica s1 e ne restituisce la copia
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-/*
-trova una sottostringa di s
-la sottostringa parte da start 
-la sua massima lunghezza è len
-*/
 	char	*sstr;
 	size_t	strlen;
 
