@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   elem.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afindo <afindo@student.roma42.it>          +#+  +:+       +#+        */
+/*   By: afindo <afindo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 09:31:05 by afindo            #+#    #+#             */
-/*   Updated: 2022/02/28 09:31:06 by afindo           ###   ########.fr       */
+/*   Updated: 2022/02/28 12:09:46 by afindo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/push_swap.h"
+#include "push_swap.h"
 
 int			add_elem(t_stack *stack, int new_nb)
 {

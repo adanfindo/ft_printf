@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   check_arg.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afindo <afindo@student.roma42.it>          +#+  +:+       +#+        */
+/*   By: afindo <afindo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 09:31:24 by afindo            #+#    #+#             */
-/*   Updated: 2022/02/28 09:31:25 by afindo           ###   ########.fr       */
+/*   Updated: 2022/02/28 12:09:39 by afindo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/push_swap.h"
+#include "push_swap.h"
 
 int			check_digit(int argc, char **argv)
 {

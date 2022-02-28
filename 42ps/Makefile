@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: afindo <afindo@student.roma42.it>          +#+  +:+       +#+         #
+#    By: afindo <afindo@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/28 09:30:19 by afindo            #+#    #+#              #
-#    Updated: 2022/02/28 09:37:31 by afindo           ###   ########.fr        #
+#    Updated: 2022/02/28 12:08:03 by afindo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,12 +20,8 @@ CFLAGS		=	-I$(LIBFT_PATH)inc/ -I $(INCL) $(FLAGS)
 
 LINKS		=	-L $(LIBFT_PATH) -lft
 
-####### CHECKER #######
-
-NAME_CHK	=	checker
 NAME_PSWAP	=	push_swap
 
-### PATH ###
 
 SRCS_PATH	=	src/
 
@@ -35,8 +31,7 @@ SRCS_BOTH	=	check_arg.c \
 				op.c \
 				utils.c \
 				free.c \
-
-SRCS_PSWAP	=	push_swap.c \
+				push_swap.c \
 				insert.c	\
 				print.c		\
 				do_op.c		\
