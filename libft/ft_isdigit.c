@@ -5,17 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: afindo <afindo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/10 13:03:46 by afindo            #+#    #+#             */
-/*   Updated: 2022/01/17 15:14:36 by afindo           ###   ########.fr       */
+/*   Created: 2022/10/13 12:45:13 by afindo            #+#    #+#             */
+/*   Updated: 2022/10/13 12:45:14 by afindo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
 int	ft_isdigit(int c)
 {
-	if (c >= 48 && c <= 57)
+	if (c >= '0' && c <= '9')
 		return (1);
-	else
-		return (0);
+	return (0);
 }

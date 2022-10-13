@@ -5,35 +5,47 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: afindo <afindo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/17 12:09:49 by afindo            #+#    #+#             */
-/*   Updated: 2022/01/17 14:16:25 by afindo           ###   ########.fr       */
+/*   Created: 2022/10/13 12:55:11 by afindo            #+#    #+#             */
+/*   Updated: 2022/10/13 12:55:14 by afindo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <limits.h>
+#include <stddef.h>
 
+// Detects whitespace
+static int	ft_isspace(int c)
+{
+	if (c == ' ' || c == '\t' || c == '\n' || c == '\v' || c == '\f' || \
+		c == '\r')
+		return (1);
+	return (0);
+}
+
+// Converts a string to int
 int	ft_atoi(const char *str)
 {
-	int	c;
-	int	s;
-	int	res;
+	int	sign;
+	int	num;
+	int	i;
 
-	c = 0;
-	s = 1;
-	res = 0;
-	while (str[c] == ' ' || str[c] == '\n' || str[c] == '\t'
-		|| str[c] == '\v' || str[c] == '\f' || str[c] == '\r')
-		c++;
-	if (str[c] == '-' || str[c] == '+')
+	sign = 1;
+	num = 0;
+	i = 0;
+	while (ft_isspace(str[i]))
+		i++;
+	if (str[i] == '-' || str[i] == '+')
+		sign = 1 - 2 * (str[i++] == '-');
+	while (str[i] >= '0' && str[i] <= '9')
 	{
-		if (str[c] == '-')
-			s = -1;
-		c++;
+		if (num > INT_MAX / 10 \
+			|| (num == INT_MAX / 10 && str[i] - '0' > 7))
+		{
+			if (sign == 1)
+				return (INT_MAX);
+			return (INT_MIN);
+		}
+		num = 10 * num + (str[i++] - '0');
 	}
-	while (str[c] >= '0' && str[c] <= '9')
-	{
-		res = (res * 10) + (str[c] - '0');
-		c++;
-	}
-	return (res * s);
+	return (num * sign);
 }

@@ -5,22 +5,25 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: afindo <afindo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/17 12:10:28 by afindo            #+#    #+#             */
-/*   Updated: 2022/01/17 15:09:32 by afindo           ###   ########.fr       */
+/*   Created: 2022/10/13 12:54:59 by afindo            #+#    #+#             */
+/*   Updated: 2022/10/13 12:55:01 by afindo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stddef.h>
+#include <stdlib.h>
 #include "libft.h"
 
+// Allocates nulled memory
 void	*ft_calloc(size_t count, size_t size)
 {
-	size_t	tot_size;
-	void	*dst;
+	void	*p;
+	size_t	buf;
 
-	tot_size = size * count;
-	dst = malloc(tot_size);
-	if (!dst)
-		return (0);
-	ft_bzero(dst, tot_size);
-	return (dst);
+	buf = count * size;
+	if (count != 0 && buf / count != size)
+		return (NULL);
+	p = malloc(buf);
+	ft_bzero(p, buf);
+	return (p);
 }
