@@ -3,94 +3,79 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afindo <afindo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lschrafs <lschrafs@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/17 12:37:04 by afindo            #+#    #+#             */
-/*   Updated: 2022/01/18 10:36:47 by afindo           ###   ########.fr       */
+/*   Created: 2022/04/28 11:42:15 by lschrafs          #+#    #+#             */
+/*   Updated: 2022/08/01 14:33:14 by lschrafs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "libft.h"
 
-int	charsep(char c, char del)
+// Returns the number of substrings
+static int	get_n_strings(char const *s, char c)
 {
-	int	i;
+	int	n_strings;
+	int	is_word;
 
-	i = 0;
-	if (c == del || c == '\0')
-		return (1);
-	return (0);
-}
-
-int	count_chars(char *str, char del)
-{
-	int	x;
-	int	chars;
-
-	x = 0;
-	chars = 0;
-	while (str[x] != '\0')
+	n_strings = 0;
+	is_word = 0;
+	while (*s)
 	{
-		if (charsep(str[x + 1], del) == 1 && charsep(str[x], del) == 0)
-			chars++;
-		x++;
-	}
-	return (chars);
-}
-
-void	write_oneword(char *dst, char *src, char del)
-{
-	int	i;
-
-	i = 0;
-	while (charsep(src[i], del) == 0)
-	{
-		dst[i] = src[i];
-		i++;
-	}
-	dst[i] = '\0';
-}
-
-void	*strsplitwrite(char **str2, char *str, char del)
-{
-	int	i;
-	int	j;
-	int	sep;
-
-	sep = 0;
-	i = 0;
-	while (str[i] != '\0')
-	{
-		if (charsep(str[i], del) == 1)
-			i++;
-		else
+		if (*s != c && is_word == 0)
 		{
-			j = 0;
-			while (charsep(str[i + j], del) == 0)
-				j++;
-			str2[sep] = (char *)malloc(sizeof(char) * (j + 1));
-			write_oneword(str2[sep], str + i, del);
-			i = i + j;
-			sep++;
+			is_word = 1;
+			n_strings++;
 		}
+		if (*s == c)
+			is_word = 0;
+		s++;
 	}
-	return ((void *)1);
+	return (n_strings);
 }
 
+// Returns the length of string that is covered by separators
+static int	ft_strlen_separator(const char *s, char c)
+{
+	int	i;
+
+	i = 0;
+	while (*s && *s != c)
+	{
+		i++;
+		s++;
+	}
+	return (i);
+}
+
+// Splits a string according to separator c and returns an array of 
+// substrings
 char	**ft_split(char const *s, char c)
 {
-	char	**strarray;
+	int		n_strings;
+	int		len_nxt;
+	int		is_word;
+	char	**arr_str;
 	char	*str;
-	int		chars;
 
-	if (s == NULL)
-		return (NULL);
-	str = (char *)s;
-	chars = count_chars(str, c);
-	strarray = (char **)malloc(sizeof(char *) * (chars + 1));
-	if (strarray == NULL)
-		return (NULL);
-	strarray[chars] = 0;
-	strsplitwrite(strarray, str, c);
-	return (strarray);
+	n_strings = get_n_strings(s, c);
+	arr_str = ft_calloc(n_strings + 1, sizeof(char *));
+	is_word = 0;
+	while (*s)
+	{
+		if (*s != c && is_word == 0)
+		{
+			is_word = 1;
+			len_nxt = ft_strlen_separator(s, c);
+			str = ft_calloc(len_nxt + 1, 1);
+			ft_strlcpy(str, s, len_nxt + 1);
+			*arr_str = str;
+			arr_str++;
+		}
+		if (*s == c)
+			is_word = 0;
+		s++;
+	}
+	return (arr_str - n_strings);
 }

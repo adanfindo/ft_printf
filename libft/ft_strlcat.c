@@ -3,30 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afindo <afindo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lschrafs <lschrafs@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/11 12:02:23 by afindo            #+#    #+#             */
-/*   Updated: 2022/01/17 14:21:19 by afindo           ###   ########.fr       */
+/*   Created: 2022/04/25 17:59:02 by lschrafs          #+#    #+#             */
+/*   Updated: 2022/05/31 12:19:29 by lschrafs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stddef.h>
 #include "libft.h"
 
-size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
+// Appends src to dst. Doesn't go over the size of dst. Always nul terminates. 
+unsigned int	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	size_t	lendst;
+	size_t	len_dest;
+	size_t	len_src;
 	size_t	i;
 
-	if (dstsize <= ft_strlen(dst))
-		return (dstsize + ft_strlen(src));
-	lendst = ft_strlen(dst);
+	len_dest = ft_strlen(dst);
+	len_src = ft_strlen(src);
+	if (dstsize <= len_dest)
+		return (len_src + dstsize);
 	i = 0;
-	while (src[i] != '\0' && lendst + 1 < dstsize)
+	while (src[i] != 0 && (len_dest + i) < (dstsize - 1))
 	{
-		dst[lendst] = src[i];
-		lendst++;
+		dst[len_dest + i] = src[i];
 		i++;
 	}
-	dst[lendst] = '\0';
-	return (ft_strlen(dst) + ft_strlen(&src[i]));
+	dst[len_dest + i] = 0;
+	return (len_src + len_dest);
 }

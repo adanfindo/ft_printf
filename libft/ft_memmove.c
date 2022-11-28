@@ -3,38 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afindo <afindo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lschrafs <lschrafs@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/10 16:48:51 by afindo            #+#    #+#             */
-/*   Updated: 2022/01/17 14:18:06 by afindo           ###   ########.fr       */
+/*   Created: 2022/04/25 17:58:57 by lschrafs          #+#    #+#             */
+/*   Updated: 2022/04/29 19:24:48 by lschrafs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stddef.h>
 
+// Copies n spaces of memory from src to dst. May overlap. Non destructive.
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	size_t	i;
+	char	*start;
 
-	if (!dst && !src)
-		return (0);
-	i = 0;
-	if ((size_t)dst - (size_t)src < len)
+	start = dst;
+	if (src < dst && dst < src + len)
 	{
-		i = len - 1;
-		while (i >= 0 && i < len)
-		{
-			((unsigned char *)dst)[i] = ((unsigned char *)src)[i];
-			i--;
-		}
+		start += len - 1;
+		src += len - 1;
+		while (len--)
+			*start-- = *((char *)src--);
+		return (dst);
 	}
-	else
-	{
-		while (i < len)
-		{
-			((unsigned char *)dst)[i] = ((unsigned char *)src)[i];
-			i++;
-		}
-	}
+	while (len--)
+		*start++ = *((char *)src++);
 	return (dst);
 }

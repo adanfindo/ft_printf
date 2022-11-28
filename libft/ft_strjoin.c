@@ -3,39 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afindo <afindo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lschrafs <lschrafs@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/17 12:33:45 by afindo            #+#    #+#             */
-/*   Updated: 2022/01/18 12:22:54 by afindo           ###   ########.fr       */
+/*   Created: 2022/04/26 16:37:08 by lschrafs          #+#    #+#             */
+/*   Updated: 2022/08/16 14:26:22 by lschrafs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "libft.h"
 
+// Joins two strings and returns a nul terminated new string
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char	*n_str;
 	int		i;
 	int		j;
+	char	*s3;
 
-	if (!s1 || !s2)
-		return (0);
-	n_str = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
-	if (!n_str)
-		return (0);
+	s3 = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	if (s3 == NULL)
+		return (NULL);
 	i = 0;
-	while (s1[i] != '\0')
+	while (s1[i])
 	{
-		n_str[i] = s1[i];
+		s3[i] = s1[i];
 		i++;
 	}
 	j = 0;
-	while (s2[j] != '\0')
+	while (s2[j])
 	{
-		n_str[i] = s2[j];
+		s3[i] = s2[j];
 		i++;
 		j++;
 	}
-	n_str[i] = '\0';
-	return (n_str);
+	s3[i] = '\0';
+	return (s3);
 }

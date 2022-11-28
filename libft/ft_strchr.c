@@ -3,27 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afindo <afindo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lschrafs <lschrafs@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/11 16:06:07 by afindo            #+#    #+#             */
-/*   Updated: 2022/01/17 14:44:37 by afindo           ###   ########.fr       */
+/*   Created: 2022/04/25 17:59:01 by lschrafs          #+#    #+#             */
+/*   Updated: 2022/04/29 19:29:53 by lschrafs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stddef.h>
 
+// Returns the address of the first occurrence of c in string s
+// Can also localize the terminating '\0'
 char	*ft_strchr(const char *s, int c)
 {
-	int	i;
-
-	i = 0;
-	while (s[i])
+	while (*s)
 	{
-		if (s[i] == (char)c)
-			return ((char *)&s[i]);
-		i++;
+		if (*s == (char) c)
+			return ((char *) s);
+		s++;
 	}
-	if ((char)c == s[i])
-		return ((char *)&s[i]);
-	return (0);
+	if (*s == c)
+		return ((char *)s);
+	return (NULL);
 }

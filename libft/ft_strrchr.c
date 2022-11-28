@@ -3,29 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afindo <afindo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lschrafs <lschrafs@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/11 16:29:45 by afindo            #+#    #+#             */
-/*   Updated: 2022/01/17 17:02:05 by afindo           ###   ########.fr       */
+/*   Created: 2022/04/25 17:59:09 by lschrafs          #+#    #+#             */
+/*   Updated: 2022/04/29 19:38:15 by lschrafs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stddef.h>
 
+// Searches for the first occurrence of c in s from the back. Returns the
+// address
 char	*ft_strrchr(const char *s, int c)
 {
-	int		i;
-	char	*last;
+	int	i;
 
-	last = 0;
 	i = 0;
-	while (s[i])
+	while (*s)
 	{
-		if (s[i] == (char)c)
-			last = (char *)&s[i];
+		s++;
 		i++;
 	}
-	if ((char)c == s[i])
-		return ((char *)&s[i]);
-	return (last);
+	while (i >= 0)
+	{
+		if (*s == (char) c)
+			return ((char *)s);
+		s--;
+		i--;
+	}
+	return (NULL);
 }

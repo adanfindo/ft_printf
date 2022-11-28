@@ -3,25 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afindo <afindo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lschrafs <lschrafs@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/17 12:10:40 by afindo            #+#    #+#             */
-/*   Updated: 2022/01/17 14:16:25 by afindo           ###   ########.fr       */
+/*   Created: 2022/04/25 17:58:52 by lschrafs          #+#    #+#             */
+/*   Updated: 2022/04/29 19:23:11 by lschrafs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stddef.h>
 
+// Searches n spaces of memory for c
 void	*ft_memchr(const void *s, int c, size_t n)
 {
-	size_t	i;
+	unsigned char	*str;
 
-	i = 0;
-	while (i < n)
+	str = (unsigned char *)s;
+	while (n--)
 	{
-		if (((unsigned char *)s)[i] == (unsigned char )c)
-			return ((void *)(s + i));
-		i++;
+		if (*str == (unsigned char) c)
+			return ((void *)str);
+		str++;
 	}
-	return (0);
+	return (NULL);
 }

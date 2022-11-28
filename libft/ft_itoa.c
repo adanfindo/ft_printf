@@ -3,70 +3,68 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afindo <afindo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lschrafs <lschrafs@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/17 15:44:10 by afindo            #+#    #+#             */
-/*   Updated: 2022/01/18 12:29:41 by afindo           ###   ########.fr       */
+/*   Created: 2022/04/28 17:51:21 by lschrafs          #+#    #+#             */
+/*   Updated: 2022/06/01 09:47:55 by lschrafs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static	void	*ft_digit(char *str, long nb, size_t len, int n)
+// Gets the "length" of an int in digits
+static int	ft_int_len(int i)
 {
-	size_t	s;
+	int	j;
 
-	s = 0;
-	if (nb < 0)
+	j = 1;
+	if (i < 0)
+		i *= -1;
+	while (i > 9)
 	{
-		s = -1;
-		nb = nb * -1;
-		str[0] = '-';
+		i /= 10;
+		j++;
 	}
-	str[len] = '\0';
-	if (n == 0)
-	{
-		str[len - 1] = '0';
-		return (str);
-	}
-	while (nb > 0)
-	{
-		str[--len] = (nb % 10) + 48;
-		nb = nb / 10;
-	}
-	return (*(&str));
+	return (j);
 }
 
-static int	ft_len(long nb)
+// Writes a positive number into a string
+static char	*ft_putnbr_itoa(char *s, int n, int len)
 {
-	int	i;
-
-	i = 0;
-	if (nb == 0)
-		i++;
-	if (nb < 0)
+	while (n > 9)
 	{
-		nb = nb * -1;
-		i++;
+		s[len - 1] = (n % 10) + '0';
+		n /= 10;
+		len--;
 	}
-	while (nb > 0)
-	{
-		nb = nb / 10;
-		i++;
-	}
-	return (i);
+	s[len - 1] = n + '0';
+	return (s);
 }
 
+// Converts an int into a string
 char	*ft_itoa(int n)
 {
 	char	*str;
-	size_t	len;
-	long	nb;
+	int		len;
 
-	nb = n;
-	len = ft_len(nb);
-	str = (char *)malloc(sizeof (char) * len + 1);
-	if (!str)
+	len = ft_int_len(n);
+	if (n < 0)
+	{
+		if (n == -2147483648)
+		{
+			str = ft_calloc(12, 1);
+			ft_strlcpy(str, "-2147483648", 12);
+			return (str);
+		}
+		str = ft_calloc(len + 2, 1);
+		if (str == NULL)
+			return (NULL);
+		*str = '-';
+		str++;
+		return (ft_putnbr_itoa(str, n * (-1), len) - 1);
+	}
+	str = ft_calloc(len + 1, 1);
+	if (str == NULL)
 		return (NULL);
-	return (ft_digit(str, nb, len, n));
+	return (ft_putnbr_itoa(str, n, len));
 }

@@ -3,42 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afindo <afindo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lschrafs <lschrafs@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/17 15:47:54 by afindo            #+#    #+#             */
-/*   Updated: 2022/01/17 15:48:37 by afindo           ###   ########.fr       */
+/*   Created: 2022/04/29 09:50:21 by lschrafs          #+#    #+#             */
+/*   Updated: 2022/04/29 19:27:37 by lschrafs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <unistd.h>
 
-static int	ft_abs(int nbr)
+// Writes a positive number to fs
+static void	ft_putposnbr_fd(int n, int fd)
 {
-	if (nbr < 0)
-		return (-nbr);
-	return (nbr);
+	char	c;
+
+	if (n > 9)
+	{
+		ft_putposnbr_fd(n / 10, fd);
+	}
+	c = n % 10 + 48;
+	write(fd, &c, 1);
 }
 
+// Writes a number to fd
 void	ft_putnbr_fd(int n, int fd)
 {
-	char	str[13];
-	int		is_neg;
-	int		length;
-
-	is_neg = (n < 0);
-	ft_bzero(str, 13);
-	if (n == 0)
-		str[0] = '0';
-	length = 0;
-	while (n != 0)
+	if (n == -2147483648)
 	{
-		str[length++] = '0' + ft_abs(n % 10);
-		n = (n / 10);
+		write(fd, "-2147483648", 11);
+		return ;
 	}
-	if (is_neg)
-		str[length] = '-';
-	else if (length > 0)
-		length--;
-	while (length >= 0)
-		write(fd, &str[length--], 1);
+	if (n < 0)
+	{
+		write(fd, "-", 1);
+		n *= -1;
+	}
+	ft_putposnbr_fd(n, fd);
 }
